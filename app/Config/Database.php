@@ -30,7 +30,7 @@ class Database extends Config
         'username'     => 'root',
         'password'     => '',
         'database'     => 'inventario',
-        'DBDriver'     => 'MySQLi',
+        'DBDriver'     => 'pdo',//MySQLi
         'DBPrefix'     => '',
         'pConnect'     => false,
         'DBDebug'      => true,

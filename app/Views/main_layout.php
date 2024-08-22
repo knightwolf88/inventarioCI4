@@ -30,6 +30,8 @@
 	<!--swiper-slider-->
 	<link rel="stylesheet" href="../template/vendor/swiper/css/swiper-bundle.min.css">
 	<!-- Style css -->
+	<link href="../template/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+
 	<link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
     <link href="../template/css/style.css" rel="stylesheet">
 	
@@ -123,10 +125,10 @@
     ***********************************-->
     <!-- Required vendors -->
     <script src="../template/vendor/global/global.min.js"></script>
-	<script src="../template/vendor/chart.js/Chart.bundle.min.js"></script>
+	<!-- <script src="../template/vendor/chart.js/Chart.bundle.min.js"></script> -->
 	<script src="../template/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 	<!-- Apex Chart -->
-	<script src="../template/vendor/apexchart/apexchart.js"></script>
+	<!-- <script src="../template/vendor/apexchart/apexchart.js"></script> -->
 	<!-- Chart piety plugin files -->
     <script src="../template/vendor/peity/jquery.peity.min.js"></script>
 	<script src="../template/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
@@ -136,20 +138,23 @@
 	
     <!-- Datatable -->
     <script src="../template/vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="../template/js/plugins-init/datatables.init.js"></script>
+    <!-- <script src="../template/js/plugins-init/datatables.init.js"></script> -->
 
 	<!-- Dashboard 1 -->
-	<script src="../template/js/dashboard/dashboard-1.js"></script>
+	<!-- <script src="../template/js/dashboard/dashboard-1.js"></script> -->
 	<script src="../template/vendor/wow-master/dist/wow.min.js"></script>
 	<script src="../template/vendor/bootstrap-datetimepicker/js/moment.js"></script>
 	<script src="../template/vendor/datepicker/js/bootstrap-datepicker.min.js"></script>
 	<script src="../template/vendor/bootstrap-select-country/js/bootstrap-select-country.min.js"></script>
-	
+
+	<script src="../template/vendor/sweetalert2/dist/sweetalert2.all.min.js"></script>
 	<script src="../template/js/dlabnav-init.js"></script>
     <script src="../template/js/custom.min.js"></script>
-	<script src="../template/js/demo.js"></script>
-    <script src="../template/js/styleSwitcher.js"></script>
-	
+	<!-- <script src="../template/js/demo.js"></script> -->
+    <!-- <script src="../template/js/styleSwitcher.js"></script> -->
+
+
+	<?= $this->renderSection('scripts_personalizados') ?>
 	
 </body>
 </html>

@@ -6,5 +6,8 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
+
 $routes->get('/productos', 'Productos::index');
-$routes->get('/productos/show', 'Productos::show');
+$routes->post('/productos/listar', 'Productos::listar');
+$routes->post('/productos/insertar', 'Productos::insertar');
+$routes->post('/productos/datosProducto', 'Productos::datosProducto');
