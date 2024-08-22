@@ -69,8 +69,8 @@ function limpiar() {
 function editarModal(id) {
     document.getElementById('idproducto').value = id;
 
-    const data=new FormData();
-    data.append('idproducto',id);
+    const data = new FormData();
+    data.append('idproducto', id);
     fetch('/inventarioCI4/public/productos/datosProducto', {
         method: 'POST',
         body: data
@@ -82,7 +82,7 @@ function editarModal(id) {
                 throw "error ajax";
             }
         })
-        .then(function (data) {   
+        .then(function (data) {
             console.log(data);
             document.getElementById('nombre').value = data.nombre;
         })
@@ -94,11 +94,15 @@ function editarModal(id) {
 
 
 function guardar() {
-
-    const formProducto = new FormData(document.getElementById('anadirfrm'));
-
+    let url = '';
+    const formProducto = new FormData(document.getElementById('anadirfrm'));   
+    if (document.getElementById('idproducto').value == '') {
+        url = '/inventarioCI4/public/productos/insertar';
+    } else {
+        url = '/inventarioCI4/public/productos/editar';
+    }
     //realizamos la peticion ajax
-    fetch('/inventarioCI4/public/productos/insertar', {
+    fetch(url, {
         method: 'POST',
         body: formProducto
     })
@@ -111,16 +115,46 @@ function guardar() {
         })
         .then(function (data) {
             if (data.status == 'success') {
-                alerta('success', 'producto registrado satisfactoriamente')
+                alerta('success', data.message)
                 InstanciarTabla();
-                   ModalProducto.hide();
+                ModalProducto.hide();
+                limpiar();
             } else {
-                alerta('error', 'producto no pudo ser registrado')
+                alerta('error', data.message)
             }
             console.log(data);
         })
         .catch(function (error) {
             console.log(error);
         });
+}
 
+function estado(id,estado) {
+    const data = new FormData(); 
+    data.append("idproducto",id);
+    data.append("estado",estado);  
+    //realizamos la peticion ajax
+    fetch('/inventarioCI4/public/productos/estado', {
+        method: 'POST',
+        body: data
+    })
+        .then(function (response) {
+            if (response.ok) {
+                return response.json()
+            } else {
+                throw "error ajax";
+            }
+        })
+        .then(function (data) {
+            if (data.status == 'success') {
+                alerta('success', data.message)
+                InstanciarTabla();          
+            } else {
+                alerta('error', data.message)
+            }
+            console.log(data);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 }

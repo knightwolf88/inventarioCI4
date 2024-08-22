@@ -81,23 +81,82 @@ class Productos extends BaseController
         }
     }
 
-    public function datosProducto(){
-       
+    public function datosProducto()
+    {
+
         $model = new ProductosModel();
         $request = \Config\Services::request();
 
-        $response = [];   
+        $response = [];
 
-            $data = $this->request->getPost('idproducto');
-      
+        $data = $this->request->getPost('idproducto');
 
-        $producto=$model->datosProducto($data);
+
+        $producto = $model->datosProducto($data);
 
         return $this->response->setJSON($producto);
     }
 
-    public function updateProductos(){
+    public function editar()
+    {
+        $model = new ProductosModel();
+        $request = \Config\Services::request();
 
+        $response = [];
+        $id = $this->request->getPost('idproducto');
+        $data = [
+            'nombre' => $this->request->getPost('nombre')
+        ];
+
+        if ($model->updateProductos($id,$data)) {
+            return $this->response->setJSON([
+                'status' => 'success',
+                'message' => 'Producto actualizado correctamente'
+            ]);
+        } else {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Error al actualizar el producto'
+            ]);
+        }
     }
-    
+
+    public function estado()
+    {
+        $model = new ProductosModel();
+        $request = \Config\Services::request();
+
+        $response = [];
+        $id = $this->request->getPost('idproducto');
+        $data = [
+            'estado' => $this->request->getPost('estado')
+        ];
+
+        if ($model->estado($id,$data)) {
+            if ($this->request->getPost('estado')==1){
+                return $this->response->setJSON([
+                    'status' => 'success',
+                    'message' => 'Producto activado correctamente'
+                ]);
+            }else{
+                return $this->response->setJSON([
+                    'status' => 'success',
+                    'message' => 'Producto desactivado correctamente'
+                ]);
+            }       
+        } else {
+            if ($this->request->getPost('estado')==0){
+                return $this->response->setJSON([
+                    'status' => 'error',
+                    'message' => 'Error al activar el producto'
+                ]);
+            }else{
+                return $this->response->setJSON([
+                    'status' => 'error',
+                    'message' => 'Error al desactivar el producto'
+                ]);
+            }   
+        
+        }
+    }
 }

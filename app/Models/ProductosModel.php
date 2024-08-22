@@ -1,4 +1,6 @@
-<?php namespace App\Models;
+<?php
+
+namespace App\Models;
 
 use CodeIgniter\Model;
 
@@ -6,7 +8,7 @@ class ProductosModel extends Model
 {
     protected $table = 'productos';
     protected $primaryKey = 'idproducto';
-    protected $allowedFields = ['nombre', 'pcosto','pventa','estado','idusuario'];
+    protected $allowedFields = ['nombre', 'pcosto', 'pventa', 'estado', 'idusuario'];
 
     public function getProductos()
     {
@@ -25,7 +27,13 @@ class ProductosModel extends Model
         return $this->asArray()->find($id);
     }
 
-    public function updateProductos($id,$data){
-        return $this->update($id,$data);
+    public function updateProductos($id, $data)
+    {
+        return $this->update($id, $data);
+    }
+
+    public function estado($id, $data)
+    {
+        return $this->update($id, $data);
     }
 }
